@@ -13,7 +13,6 @@ public class Demo06Volatile {
         System.out.println("count = " + demo.count);
     }
 
-        Thread.sleep(1000);
     static class VolatileDemo implements Runnable {
         public volatile int count;
         private Lock lock = new ReentrantLock();

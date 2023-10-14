@@ -142,3 +142,51 @@ synchronized既能保证可见性，又能保证原子性，而volatile只能保
 # 并发编程
 ## JUC (java.util.concurrent)
 ![img_3.png](img_3.png)
+
+## Lock and AQS
+
+JUC包中提供的锁：
+
+ReentrantLock重入锁，它是一种可重入的独享锁，具有与使用 synchronized 相同的一些基本行
+为和语义，但是它的API功能更强大，ReentrantLock 相当于synchronized 的增强版，具有
+synchronized很多所没有的功能。
+
+ReentrantReadWriteLock读写锁
+synchronized和ReentrantLock都是同步互斥锁，不管是读操作的线程还是写操作的线程，同
+时只能有一个线程获得锁，也就是在进行写操作的时候，在写线程进行访问的时候，所有的线
+程都会被阻塞。但是其实，读操作是不需要加锁访问的。互斥锁不区分读写，全部加锁实现起
+来简单，但是性能会大打折扣。
+
+ReentrantReadWriteLock维护了一对关联锁：ReadLock和WriteLock，由词知意，一个读锁
+一个写锁，合称“读写锁”。一个是ReadLock(读锁)用于读操作的，一个是WriteLock(写锁)用于
+写操作，这两个锁都实现了Lock接口。读写锁适合于读多写少的场景，基本原则是读锁可以
+被多个线程同时持有进行访问，而写锁只能被一个线程持有。
+StampedLock重入读写锁，JDK1.8引入的锁类型，是对读写锁ReentrantReadWriteLock的增强
+版
+
+## 线程协作工具类
+
+### CountDownLatch倒数门闩
+
+倒数结束之前，一直处于等待状态，直到数到0结束，此线程才继续工作。
+场景：购物拼团，大巴人满发车，分布式锁
+
+主要方法：
+- 构造函数：CountDownLatch(int count)：只有一个构造函数，参数count为需要倒数的数值。
+- await()：当一个或多个线程调用await()时，这些线程会阻塞。
+- countDown()：其他线程调用countDown()会将计数器减1，调用countDown方法的线程不会阻
+塞。当计数器的值变为0时，因await方法阻塞的线程会被唤醒，继续执行
+
+### Semaphore信号量
+
+用来限制或管理数量有限资源的使用情况。
+
+主要方法：
+- 构造函数：Semaphore(int permits,Boolean fair)：可以设置是否使用公平策略，如果传入true,则
+- Semaphore会把之前等待的线程放到FIFO队列里，以便有了新许可证可以分给之前等待时间最长
+的线程。
+- acquire()：获取许可证，当一个线程调用acquire操作时，他要么通过成功获取信号量（信号量减
+1），要么一直等待下去，直到有线程释放信号量，或超时。
+- release()：释放许可证，会将信号量加1，然后唤醒等待的线程。
+
+### 
