@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * Semaphore案例：三辆小汽车抢车位
  * Semaphore信号量主要作用：1.用于多个共享资源的互斥使用，2.用于并发线程数的控制
  */
-public class Demo12Semaphore {
+public class DemoSemaphore {
     public static void main(String[] args) {
 //模拟资源类，有3个空车位
         Semaphore semaphore = new Semaphore(3);

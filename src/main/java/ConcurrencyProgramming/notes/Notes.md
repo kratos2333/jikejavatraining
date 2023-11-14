@@ -189,4 +189,25 @@ StampedLock重入读写锁，JDK1.8引入的锁类型，是对读写锁Reentrant
 1），要么一直等待下去，直到有线程释放信号量，或超时。
 - release()：释放许可证，会将信号量加1，然后唤醒等待的线程。
 
-### 
+### CyclicBarrier循环栅栏
+
+主要方法：
+
+- 构造函数：CyclicBarrier(int parties, Runnable barrierAction)，设置聚集的线程数量和集齐线程
+数的结果之后要执行的动作。 
+- await()：阻塞当前线程，待凑齐线程数量之后继续执行
+
+线程会等待，直到线程到了事先规定的数目，然后触发执行条件进行下一步动作
+
+当有大量线程互相配合，分别计算不同任务，并且需要最后统一汇总时，就可以用CyclicBarrier，它可 以构造一个集结点，当某一个线程执行完，它就会到集结点等待，直到所有线程都到集结点，则该栅栏 就被撤销，所有线程统一出再，继续执行剩下的任务。
+
+### 并发容器
+
+在JUC包中，有一大部分是关于并发容器的，如ConcurrentHashMap，ConcurrentSkipListMap， CopyOnWriteArrayList及阻塞队列。这里将介绍使用频率、面试中出现频繁的最高的 ConcurrentHashMap和阻塞队列。
+
+#### JDK 早期线程安全的集合 (用lock保证线程安全)
+- vector
+- stack
+- hashtable
+
+### 线程池
