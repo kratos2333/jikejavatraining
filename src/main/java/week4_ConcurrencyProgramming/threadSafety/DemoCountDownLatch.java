@@ -1,4 +1,4 @@
-package ConcurrencyProgramming.threadSafety;
+package week4_ConcurrencyProgramming.threadSafety;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

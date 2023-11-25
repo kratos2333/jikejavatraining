@@ -1,4 +1,4 @@
-package ConcurrencyProgramming.threadSafety;
+package week4_ConcurrencyProgramming.threadSafety;
 
 public class Demo05Synchronized {
     public synchronized void increase(){

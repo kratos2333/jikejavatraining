@@ -1,4 +1,4 @@
-package ConcurrencyProgramming.threadSafety;
+package week4_ConcurrencyProgramming.threadSafety;
 
 public class Demo03Jmm {
     public static void main(String[] args) throws InterruptedException {

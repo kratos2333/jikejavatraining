@@ -1,4 +1,4 @@
-package ConcurrencyProgramming.threadSafety;
+package week4_ConcurrencyProgramming.threadSafety;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

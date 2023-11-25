@@ -1,4 +1,4 @@
-package ConcurrencyProgramming.intro;
+package week4_ConcurrencyProgramming.intro;
 
 public class ThreadDemo {
 
